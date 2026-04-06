@@ -13,9 +13,7 @@ dotenv.config();
 connectDB();
 
 let app = express();
-app.use(cors({
-    origin: "http://localhost:5173",
-}));
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -42,6 +40,8 @@ app.get("/about", (req, res) => {
     });
 });
 
-app.listen(9001, () => {
-    console.log("Server has Started....");
+const PORT = process.env.PORT || 9001;
+
+app.listen(PORT, () => {
+    console.log(`Server has Started on port ${PORT}....`);
 });
